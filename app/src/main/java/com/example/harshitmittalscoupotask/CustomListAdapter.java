@@ -1,23 +1,28 @@
-package com.example.harshitmittalscoupotask.Adapters;
+package com.example.harshitmittalscoupotask;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.harshitmittalscoupotask.Models.CarDetailsModel;
 import com.example.harshitmittalscoupotask.RoomDB.Cars;
+import com.example.harshitmittalscoupotask.RoomDB.Users;
 import com.example.harshitmittalscoupotask.databinding.CarListItemBinding;
 
 import java.util.List;
 
 public class CustomListAdapter extends BaseAdapter {
-    private Context context;
-    private List<Cars> contacts;
+    final private Context context;
+    final private List<Cars> contacts;
     private CarListItemBinding binding;
-    private OnClickListener onClickListener;
+    final private OnClickListener onClickListener;
 
     public CustomListAdapter(Context context, List<Cars> contacts,OnClickListener onClickListener) {
         this.context = context;
@@ -60,12 +65,8 @@ public View getView(int position, View convertView, ViewGroup parent) {
             binding.textCarModel.setText(item.getModelName());
             binding.textCarMaker.setText(item.getMakerName());
             Glide.with(context).load(item.getImage()).into(binding.carImage);
-            binding.addImageButton.setOnClickListener(view->{
-                onClickListener.onAddImage(item);
-            });
-            binding.deleteButton.setOnClickListener(view->{
-                onClickListener.onDelete(item);
-            });
+            binding.addImageButton.setOnClickListener(view-> onClickListener.onAddImage(item));
+            binding.deleteButton.setOnClickListener(view-> onClickListener.onDelete(item));
 
 
         }

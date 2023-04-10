@@ -1,22 +1,16 @@
 package com.example.harshitmittalscoupotask;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
 import android.view.View;
 import android.widget.Toast;
-
 import com.example.harshitmittalscoupotask.RoomDB.Users;
 import com.example.harshitmittalscoupotask.ViewModel.LoginViewModel;
 import com.example.harshitmittalscoupotask.databinding.ActivityLoginBinding;
-
 import java.util.Objects;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class LoginActivity extends AppCompatActivity {
 

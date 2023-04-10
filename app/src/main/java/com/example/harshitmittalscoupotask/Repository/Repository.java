@@ -1,4 +1,4 @@
-package com.example.harshitmittalscoupotask.RetrofitServices.Repository;
+package com.example.harshitmittalscoupotask.Repository;
 
 import android.content.Context;
 import android.util.Log;
@@ -27,7 +27,7 @@ import retrofit2.Response;
 public class Repository {
 
     private final ApiService service;
-    private AppDatabase appDatabase;
+    private final AppDatabase appDatabase;
     private final MutableLiveData<MakerModel> makerMutableData = new MutableLiveData<>();
     public LiveData<MakerModel> maker;
     private final MutableLiveData<CarModel> modelMutableData = new MutableLiveData<>();
@@ -40,7 +40,7 @@ public class Repository {
     private final MutableLiveData<List<Cars>> _carsListLive = new MutableLiveData<>();
     public LiveData<List<Cars>> carsListLive;
     public Repository(Context context) {
-        this.service = RetrofitClient.getInstance().getApiCall();;
+        this.service = RetrofitClient.getInstance().getApiCall();
         appDatabase = AppDatabase.getInstance(context);
         userDetailsFromUsername = _userDetailsFormUsername;
         this.maker = makerMutableData;
@@ -62,7 +62,7 @@ public class Repository {
             }
 
             @Override
-            public void onFailure(Call<MakerModel> call, Throwable t) {
+            public void onFailure(@NonNull Call<MakerModel> call, @NonNull Throwable t) {
                 Log.e("Internet","Not Connected");
             }
         });
@@ -85,7 +85,7 @@ public class Repository {
             }
 
             @Override
-            public void onFailure(Call<CarModel> call, Throwable t) {
+            public void onFailure(@NonNull Call<CarModel> call, @NonNull Throwable t) {
                 Log.e("Erorr","Notworking call");
             }
         });

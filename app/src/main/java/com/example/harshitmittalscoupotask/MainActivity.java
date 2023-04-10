@@ -16,15 +16,15 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.harshitmittalscoupotask.Adapters.DropdownAdapter;
 import com.example.harshitmittalscoupotask.Models.CarDetailsModel;
 import com.example.harshitmittalscoupotask.Models.MakerDetailsModel;
 import com.example.harshitmittalscoupotask.RoomDB.Cars;
@@ -62,15 +62,9 @@ public class MainActivity extends AppCompatActivity{
         searchMakers();
         getCarsList(userDBID);
         handlerForOnResultActivity();
-        viewModel.getMaker().observe(this, data -> {
-            setMakerSpinner(data.getResults());
-        });
-        viewModel.getModel().observe(this,data->{
-            setModelSpinner(data.getResults());
-        });
-        viewModel.getCarsList().observe(this,data ->{
-            refreshListView(data);
-        });
+        viewModel.getMaker().observe(this, data -> setMakerSpinner(data.getResults()));
+        viewModel.getModel().observe(this,data-> setModelSpinner(data.getResults()));
+        viewModel.getCarsList().observe(this,data -> refreshListView(data));
         binding.addCarButton.setOnClickListener(view ->{
             if(modelName!=null&&modelName.length()>0 && makeName!=null && makeName.length()>0 ){
                 Cars car = new Cars();
@@ -103,8 +97,6 @@ public class MainActivity extends AppCompatActivity{
                                 recivedCar.setImage(String.valueOf(savedImageUri));
                                 viewModel.updateCar(recivedCar);
                                 adapter.notifyDataSetChanged();
-//                                getCarsList(userDBID);
-//                                Glide.with(this).load(savedImageUri).into(Imageg);
                             } catch (IOException e) {
                                 e.printStackTrace();
                                 Toast.makeText(MainActivity.this, "Failed To Save Image", Toast.LENGTH_SHORT).show();
@@ -118,6 +110,7 @@ public class MainActivity extends AppCompatActivity{
                 result -> {
                     if (result.getResultCode() == Activity.RESULT_OK) {
                         Intent data = result.getData();
+                        assert data != null;
                         Bitmap thumbnail = (Bitmap) data.getExtras().get("data"); // Bitmap from camera
                         Uri saveImageToInternalStorage = saveImageToInternalStorage(thumbnail);
                         recivedCar.setImage(String.valueOf(saveImageToInternalStorage));

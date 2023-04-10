@@ -1,4 +1,4 @@
-package com.example.harshitmittalscoupotask;
+package com.example.harshitmittalscoupotask.Adapters;
 
 
 import android.content.Context;
@@ -6,9 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,6 +13,7 @@ import androidx.annotation.Nullable;
 
 import com.example.harshitmittalscoupotask.Models.CarDetailsModel;
 import com.example.harshitmittalscoupotask.Models.MakerDetailsModel;
+import com.example.harshitmittalscoupotask.R;
 
 import java.util.ArrayList;
 import java.util.List;
