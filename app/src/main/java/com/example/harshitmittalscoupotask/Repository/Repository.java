@@ -1,4 +1,4 @@
-package com.example.harshitmittalscoupotask.Repository;
+package com.example.harshitmittalscoupotask.RetrofitServices.Repository;
 
 import android.content.Context;
 import android.util.Log;

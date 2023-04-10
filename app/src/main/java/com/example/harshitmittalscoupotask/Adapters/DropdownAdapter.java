@@ -51,12 +51,6 @@ public class DropdownAdapter<T> extends ArrayAdapter<T> {
             textViewName.setText(currentItem);
         }
 
-
-        // It is used the name to the TextView when the
-        // current item is not null.
-
-
-
         return convertView;
     }
 }
